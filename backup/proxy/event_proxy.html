@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>event proxy</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <style>
+        .red {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <a href="#">a1</a>
+        <a href="#">a2</a>
+        <a href="#">a3</a>
+        <a href="#">a4</a>
+        <a href="#">a5</a>
+    </div>
+
+    <script>
+        // var div1 = document.getElementById('div1')
+        // div1.addEventListener('click', function(e) {
+        //     var target = e.target
+        //     if (target.nodeName == 'A') {
+        //         alert(target.innerHTML)
+        //     }
+        // })
+
+
+
+        // $('#div1').click(function() {
+        //     var _this = this
+        //     setTimeout(function() {
+        //         $(_this).css('background-color', 'red')
+        //         console.log(this)
+        //         console.log(_this)
+        //     }, 1000)
+        // })
+
+
+        $('#div1').click(function() {
+            var _this = this
+            setTimeout($.proxy(function() {
+                $(this).css('background-color', 'red')
+            }, this), 1000)
+        })
+    </script>
+</body>
+</html>
